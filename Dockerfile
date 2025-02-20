@@ -2,7 +2,8 @@ FROM hashicorp/terraform:1.10 as mirror
 
 COPY .terraformrc /usr/share/terraform/terraform.tfrc
 
-CMD providers mirror -platform=linux_arm /usr/share/terraform/providers
+RUN terraform -help
+RUN /bin/terraform providers mirror -platform=linux_arm /usr/share/terraform/providers
 
 FROM hashicorp/terraform:1.10
 
