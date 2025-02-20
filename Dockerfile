@@ -1,12 +1,16 @@
 FROM hashicorp/terraform:1.10 as mirror
 
-COPY .terraformrc /usr/share/terraform/terraform.tfrc
+WORKDIR /terraform
 
-RUN terraform -help
-RUN /bin/terraform providers mirror -platform=linux_arm /usr/share/terraform/providers
+COPY .terraformrc terraform.tfrc
+
+RUN terraform -version
+RUN terraform providers mirror -platform=linux_arm providers
 
 FROM hashicorp/terraform:1.10
 
-COPY --from=mirror /usr/share/terraform/providers /usr/share/terraform/providers/
+WORKDIR /terraform
+
+COPY --from=mirror /terraform /terraform/
 
 # TF_CLI_CONFIG_FILE="file.tfrc"
