@@ -12,6 +12,12 @@ RUN terraform providers mirror ./providers
 
 FROM hashicorp/terraform:${TERRAFORM_VERSION}
 
+
+
+RUN pwd
+
+
+
 RUN mkdir \
   /usr/share/terraform \
   /usr/share/terraform/providers
