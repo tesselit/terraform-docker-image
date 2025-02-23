@@ -12,17 +12,10 @@ RUN terraform providers mirror ./providers
 
 FROM hashicorp/terraform:${TERRAFORM_VERSION}
 
-
-
-RUN pwd
-
-
-
-RUN mkdir \
-  /usr/share/terraform \
-  /usr/share/terraform/providers
-
+ENV TF_IN_AUTOMATION=true
 ENV TF_CLI_CONFIG_FILE=/usr/share/terraform/terraform.tfrc
+
+RUN mkdir -p /usr/share/terraform/providers
 
 COPY .terraformrc ${TF_CLI_CONFIG_FILE}
 COPY --from=mirror /terraform/providers /usr/share/terraform/providers/
