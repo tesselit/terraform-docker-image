@@ -1,4 +1,4 @@
-ARG TERRAFORM_VERSION=1.10
+ARG TERRAFORM_VERSION=1.11
 
 
 FROM hashicorp/terraform:${TERRAFORM_VERSION} as mirror
@@ -14,8 +14,6 @@ FROM hashicorp/terraform:${TERRAFORM_VERSION}
 
 ENV TF_IN_AUTOMATION=true
 ENV TF_CLI_CONFIG_FILE=/usr/share/terraform/terraform.tfrc
-
-RUN mkdir -p /usr/share/terraform/providers
 
 COPY .terraformrc ${TF_CLI_CONFIG_FILE}
 COPY --from=mirror /terraform/providers /usr/share/terraform/providers/
