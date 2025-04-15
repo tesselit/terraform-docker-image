@@ -1,7 +1,7 @@
 ARG TERRAFORM_VERSION=1.11
 
 
-FROM hashicorp/terraform:${TERRAFORM_VERSION} as mirror
+FROM hashicorp/terraform:${TERRAFORM_VERSION} AS mirror
 
 WORKDIR /terraform
 
