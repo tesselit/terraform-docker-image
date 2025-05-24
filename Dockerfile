@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 ARG TERRAFORM_VERSION=1.11
 
 
